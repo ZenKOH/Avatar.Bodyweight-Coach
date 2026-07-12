@@ -1,6 +1,6 @@
 # Avatar Bodyweight Coach
 
-A standalone, local-first MacBook app for learning safe no-equipment bodyweight exercises with selectable high-fidelity browser-rendered avatars, staged movement demonstrations, voice/sound coaching, a hard stop control, and an offline AI-style coaching engine.
+A standalone, local-first MacBook app for learning safe no-equipment bodyweight exercises with selectable high-fidelity browser-rendered avatars, staged movement demonstrations, voice/sound coaching, a hard stop control, an offline AI-style coaching engine, and a companion 3D Asset Lab for moving toward true 3D human avatars.
 
 ## What it does
 
@@ -14,12 +14,53 @@ A standalone, local-first MacBook app for learning safe no-equipment bodyweight 
 - Progress log stored in the browser only.
 - Exportable session plan and CSV-style log.
 - Works offline. No account, API key, camera, wearable, backend, or external library.
+- Companion 3D Asset Lab with vetted open/free model, rigging and motion-capture sources, licence cautions and a local asset manifest workflow.
+
+## 3D Asset Lab
+
+Open the companion page:
+
+```text
+asset-lab.html
+```
+
+On GitHub Pages:
+
+```text
+https://zenkoh.github.io/Avatar.Bodyweight-Coach/asset-lab.html
+```
+
+The 3D Asset Lab does not silently bundle third-party human models or motion-capture clips, because those files are large and their redistribution licences vary. Instead, it gives a practical, safer pipeline:
+
+```text
+MakeHuman / validated open model source → Blender clean-up and rigging → motion retargeting → GLB export → browser integration
+```
+
+Included files:
+
+```text
+asset-lab.html
+asset-sources.json
+docs/OPEN_3D_ASSETS.md
+assets/3d/README.md
+```
+
+The Asset Lab can locally stage candidate `.glb`, `.gltf`, `.vrm`, `.fbx`, `.bvh`, or `.zip` files and generate a Markdown manifest. No file is uploaded. This is a preparation workflow for the next build step: adding a true Three.js GLB viewer with animation clips once licences are cleared.
+
+## Recommended 3D pipeline
+
+1. Generate or choose a clothed adult human model from a source with clear redistribution rights.
+2. Clean and rig the model in Blender.
+3. Retarget exercise motion clips for squat, lunge, bridge, push-up, plank, dead bug, balance, cardio and mobility patterns.
+4. Export app-ready `.glb` files with named animation clips.
+5. Add source, licence, attribution and modification notes before committing any asset under `assets/3d/`.
+6. Keep the existing SVG avatar as a fallback when 3D assets fail to load.
 
 ## Demo upgrade notes
 
 The **Show avatar demo** button starts a guided stage-by-stage exercise demonstration rather than only scrolling to a static animation. Each demo cycles through four phases and updates the avatar pose, timeline, spoken coaching, written technique comments, and optional cue sounds.
 
-The avatar is now rendered as a higher-fidelity local SVG with skin-tone gradients, face details, hair variants, clothing, shadows, texture filters, and different male/female proportions. It is designed to look much better than the earlier stick-avatar prototype. True photorealistic humans performing exercise realistically require licensed 3D/video assets, rigging, and motion-capture animation clips; this repository remains fully standalone, local-first, and asset-light.
+The avatar is now rendered as a higher-fidelity local SVG with skin-tone gradients, face details, hair variants, clothing, shadows, texture filters, and different male/female proportions. It is designed to look much better than the earlier stick-avatar prototype. True photorealistic humans performing exercise realistically require licensed 3D/video assets, rigging, and motion-capture animation clips; this repository remains fully standalone, local-first, and asset-light until asset rights are cleared.
 
 ## How to run on a MacBook
 
@@ -27,6 +68,12 @@ Open the app directly:
 
 ```bash
 open index.html
+```
+
+Open the 3D Asset Lab directly:
+
+```bash
+open asset-lab.html
 ```
 
 Or run it as a local site:
@@ -49,10 +96,11 @@ This repository can be published through GitHub Pages:
 Settings → Pages → Deploy from a branch → main → / (root) → Save
 ```
 
-Expected URL:
+Expected URLs:
 
 ```text
 https://zenkoh.github.io/Avatar.Bodyweight-Coach/
+https://zenkoh.github.io/Avatar.Bodyweight-Coach/asset-lab.html
 ```
 
 ## Safety scope
@@ -71,10 +119,14 @@ This is an educational prototype, not medical advice, physiotherapy, diagnosis, 
 
 ```text
 index.html
+asset-lab.html
 styles.css
-demo-upgrade.css
 app.js
+demo-upgrade.css
 demo-upgrade.js
+asset-sources.json
+docs/OPEN_3D_ASSETS.md
+assets/3d/README.md
 README.md
 LICENSE
 .gitignore

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "MakeHuman",
+    "role": "Open-source human model generator",
+    "licence_note": "Application/data AGPL; exported official models commonly CC0 via export exception; verify export and clothing assets.",
+    "recommended_use": "First route for generating clothed adult GLB avatars through Blender."
+  },
+  {
+    "name": "MB-Lab",
+    "role": "Blender add-on for realistic humanoids",
+    "licence_note": "GPL/AGPL family; generated characters may inherit AGPL obligations.",
+    "recommended_use": "Experiment, but do not bundle generated characters without review."
+  },
+  {
+    "name": "VALID Avatar Library",
+    "role": "Freely available rigged avatars",
+    "licence_note": "Verify package licence and attribution requirements.",
+    "recommended_use": "Inclusive avatar testing."
+  },
+  {
+    "name": "Anny Body Model",
+    "role": "Open parametric body model",
+    "licence_note": "Apache 2.0 reported by authors.",
+    "recommended_use": "Future open body-model route."
+  },
+  {
+    "name": "CMU Motion Capture Database",
+    "role": "Motion capture source",
+    "licence_note": "Public research source; verify sequence terms before redistribution.",
+    "recommended_use": "Motion reference and retargeting."
+  },
+  {
+    "name": "AMASS/BABEL",
+    "role": "Motion corpus and labels",
+    "licence_note": "Research terms vary by source dataset.",
+    "recommended_use": "Research/reference, not direct bundling."
+  },
+  {
+    "name": "Mixamo",
+    "role": "Auto-rigging and animation service",
+    "licence_note": "Free service but not open source; Adobe terms apply.",
+    "recommended_use": "Rigging/retargeting tool, not bundled source."
+  },
+  {
+    "name": "Three.js",
+    "role": "Browser 3D renderer",
+    "licence_note": "MIT.",
+    "recommended_use": "Future GLB viewer and animation mixer."
+  }
+]

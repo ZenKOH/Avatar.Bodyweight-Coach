@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Avatar Bodyweight Coach</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="demo-upgrade.css" />
 </head>
 <body>
   <header class="hero">
     <nav class="topbar" aria-label="Primary navigation">
+      <a href="#demoCoach">Demo coach</a>
       <a href="#library">Exercise library</a>
       <a href="#aiCoach">AI Coach</a>
       <a href="#session">Session plan</a>
@@ -18,7 +20,7 @@
       <div>
         <p class="eyebrow">Standalone MacBook app · local-first · no equipment</p>
         <h1>Avatar Bodyweight Coach</h1>
-        <p class="lede">Choose a male or female 3D-style avatar, learn bodyweight exercises, and generate a safe AI-style session plan that adapts to time, energy, experience, soreness, and movement sensitivities.</p>
+        <p class="lede">Choose a more realistic male or female avatar, watch staged movement demos with optional voice coaching, learn bodyweight exercises, and generate a safe AI-style session plan that adapts to time, energy, experience, soreness, and movement sensitivities.</p>
         <div class="hero-actions">
           <a class="button primary" href="#aiCoach">Build today’s session</a>
           <a class="button secondary" href="#library">Browse exercises</a>
@@ -37,11 +39,11 @@
   </header>
 
   <main>
-    <section class="panel split" aria-labelledby="avatarTitle">
+    <section id="demoCoach" class="panel split demo-panel" aria-labelledby="avatarTitle">
       <div>
-        <p class="section-kicker">Visual demonstration</p>
-        <h2 id="avatarTitle">Selectable 3D-style avatar</h2>
-        <p>The avatar uses local CSS animation to show the movement pattern. It is intentionally educational rather than biometric. It does not use a camera or judge your body.</p>
+        <p class="section-kicker">Guided visual demonstration</p>
+        <h2 id="avatarTitle">Staged avatar coach with voice and sound</h2>
+        <p>The demo moves through clear exercise stages: setup, movement, control, and return. The browser voice coach explains each stage, gives technique comments, and plays a soft cue tone when the stage changes.</p>
         <div class="segmented" role="group" aria-label="Avatar selection">
           <button id="avatarNeutralBtn" class="seg active">Neutral</button>
           <button id="avatarMaleBtn" class="seg">Male</button>
@@ -50,25 +52,39 @@
         <div class="demo-meta">
           <span id="demoName">Bodyweight Squat</span>
           <span id="demoPattern">Squat pattern</span>
+          <span id="demoStageBadge">Stage 1 of 4</span>
         </div>
+        <div class="demo-controls" aria-label="Demo controls">
+          <button id="playDemoBtn" class="button primary" type="button">Play guided demo</button>
+          <button id="pauseDemoBtn" class="button secondary" type="button">Pause</button>
+          <button id="replayDemoBtn" class="button secondary" type="button">Replay</button>
+          <button id="voiceToggleBtn" class="button secondary" type="button" aria-pressed="true">Voice on</button>
+        </div>
+        <div class="stage-card" aria-live="polite">
+          <p class="stage-label" id="stageLabel">Setup</p>
+          <h3 id="stageTitle">Stand tall and prepare</h3>
+          <p id="stageCue">Feet grounded, posture tall, breathing steady.</p>
+          <p id="stageComment">Press play or choose “Show avatar demo” from any exercise card.</p>
+        </div>
+        <ol id="stageTimeline" class="stage-timeline" aria-label="Exercise stage timeline"></ol>
       </div>
 
       <div class="stage-wrap">
-        <div id="avatarStage" class="avatar-stage pattern-squat avatar-neutral" aria-label="Animated avatar demonstration">
+        <div id="avatarStage" class="avatar-stage pattern-squat avatar-neutral stage-0" aria-label="Animated avatar demonstration">
+          <div class="stage-grid"></div>
           <div class="floor"></div>
-          <div class="avatar">
-            <span class="head"></span>
-            <span class="torso"></span>
-            <span class="arm arm-left"></span>
-            <span class="arm arm-right"></span>
-            <span class="forearm forearm-left"></span>
-            <span class="forearm forearm-right"></span>
-            <span class="leg leg-left"></span>
-            <span class="leg leg-right"></span>
-            <span class="shin shin-left"></span>
-            <span class="shin shin-right"></span>
-            <span class="foot foot-left"></span>
-            <span class="foot foot-right"></span>
+          <div class="avatar" aria-hidden="true">
+            <span class="avatar-shadow"></span>
+            <span class="leg leg-left"></span><span class="leg leg-right"></span>
+            <span class="shin shin-left"></span><span class="shin shin-right"></span>
+            <span class="foot foot-left"></span><span class="foot foot-right"></span>
+            <span class="hip"></span>
+            <span class="torso"><span class="torso-highlight"></span></span>
+            <span class="neck"></span>
+            <span class="head"><span class="hair"></span><span class="eyes"></span><span class="nose"></span><span class="mouth"></span></span>
+            <span class="arm arm-left"></span><span class="arm arm-right"></span>
+            <span class="forearm forearm-left"></span><span class="forearm forearm-right"></span>
+            <span class="hand hand-left"></span><span class="hand hand-right"></span>
           </div>
           <div class="motion-ring"></div>
         </div>
@@ -81,115 +97,39 @@
       <p class="wide-copy">This local AI-style coach uses transparent rules rather than a cloud model. It recommends a balanced session, adjusts intensity when energy is low, avoids sensitive movement patterns, and prioritises safer progressions.</p>
       <div class="coach-grid">
         <form id="coachForm" class="coach-form">
-          <label>Available time
-            <select id="timeInput">
-              <option value="10">10 minutes</option>
-              <option value="15">15 minutes</option>
-              <option value="20" selected>20 minutes</option>
-              <option value="30">30 minutes</option>
-              <option value="40">40 minutes</option>
-            </select>
-          </label>
-          <label>Experience level
-            <select id="experienceInput">
-              <option value="starter">Starter</option>
-              <option value="building" selected>Building</option>
-              <option value="confident">Confident</option>
-            </select>
-          </label>
-          <label>Energy today
-            <input id="energyInput" type="range" min="1" max="5" value="3" />
-            <span class="range-readout"><span id="energyReadout">3</span>/5</span>
-          </label>
-          <label>Soreness / stiffness today
-            <input id="sorenessInput" type="range" min="1" max="5" value="2" />
-            <span class="range-readout"><span id="sorenessReadout">2</span>/5</span>
-          </label>
-          <label>Session goal
-            <select id="goalInput">
-              <option value="balanced" selected>Balanced function</option>
-              <option value="strength">Strength foundation</option>
-              <option value="core">Core control</option>
-              <option value="mobility">Mobility and balance</option>
-              <option value="cardio">Gentle conditioning</option>
-            </select>
-          </label>
-          <fieldset>
-            <legend>Areas to protect today</legend>
-            <label class="check"><input type="checkbox" value="wrist" name="protect" /> Wrist / hand</label>
-            <label class="check"><input type="checkbox" value="knee" name="protect" /> Knee</label>
-            <label class="check"><input type="checkbox" value="shoulder" name="protect" /> Shoulder</label>
-            <label class="check"><input type="checkbox" value="back" name="protect" /> Back</label>
-          </fieldset>
+          <label>Available time<select id="timeInput"><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="40">40 minutes</option></select></label>
+          <label>Experience level<select id="experienceInput"><option value="starter">Starter</option><option value="building" selected>Building</option><option value="confident">Confident</option></select></label>
+          <label>Energy today<input id="energyInput" type="range" min="1" max="5" value="3" /><span class="range-readout"><span id="energyReadout">3</span>/5</span></label>
+          <label>Soreness / stiffness today<input id="sorenessInput" type="range" min="1" max="5" value="2" /><span class="range-readout"><span id="sorenessReadout">2</span>/5</span></label>
+          <label>Session goal<select id="goalInput"><option value="balanced" selected>Balanced function</option><option value="strength">Strength foundation</option><option value="core">Core control</option><option value="mobility">Mobility and balance</option><option value="cardio">Gentle conditioning</option></select></label>
+          <fieldset><legend>Areas to protect today</legend><label class="check"><input type="checkbox" value="wrist" name="protect" /> Wrist / hand</label><label class="check"><input type="checkbox" value="knee" name="protect" /> Knee</label><label class="check"><input type="checkbox" value="shoulder" name="protect" /> Shoulder</label><label class="check"><input type="checkbox" value="back" name="protect" /> Back</label></fieldset>
           <button class="button primary" type="submit">Generate AI session</button>
         </form>
-
-        <div id="coachOutput" class="coach-output" aria-live="polite">
-          <h3>Today’s AI coach view</h3>
-          <p>Set your time, readiness and protection areas, then generate a session. The coach will explain why it selected the plan.</p>
-        </div>
+        <div id="coachOutput" class="coach-output" aria-live="polite"><h3>Today’s AI coach view</h3><p>Set your time, readiness and protection areas, then generate a session. The coach will explain why it selected the plan.</p></div>
       </div>
     </section>
 
     <section id="session" class="panel" aria-labelledby="sessionTitle">
-      <div class="section-row">
-        <div>
-          <p class="section-kicker">Session plan</p>
-          <h2 id="sessionTitle">Your generated workout</h2>
-        </div>
-        <div class="button-row">
-          <button id="copyPlanBtn" class="button secondary">Copy plan</button>
-          <button id="downloadPlanBtn" class="button secondary">Download plan</button>
-        </div>
-      </div>
+      <div class="section-row"><div><p class="section-kicker">Session plan</p><h2 id="sessionTitle">Your generated workout</h2></div><div class="button-row"><button id="copyPlanBtn" class="button secondary">Copy plan</button><button id="downloadPlanBtn" class="button secondary">Download plan</button></div></div>
       <div id="sessionPlan" class="session-plan empty">No session generated yet.</div>
     </section>
 
     <section id="library" class="panel" aria-labelledby="libraryTitle">
-      <div class="section-row">
-        <div>
-          <p class="section-kicker">Exercise library</p>
-          <h2 id="libraryTitle">36 no-equipment bodyweight exercises</h2>
-        </div>
-        <div class="filters">
-          <input id="searchInput" type="search" placeholder="Search exercises, cues, body parts…" />
-          <select id="domainFilter">
-            <option value="all">All domains</option>
-          </select>
-        </div>
-      </div>
+      <div class="section-row"><div><p class="section-kicker">Exercise library</p><h2 id="libraryTitle">36 no-equipment bodyweight exercises</h2></div><div class="filters"><input id="searchInput" type="search" placeholder="Search exercises, cues, body parts…" /><select id="domainFilter"><option value="all">All domains</option></select></div></div>
       <div id="exerciseGrid" class="exercise-grid"></div>
     </section>
 
     <section id="progress" class="panel" aria-labelledby="progressTitle">
-      <div class="section-row">
-        <div>
-          <p class="section-kicker">Local progress</p>
-          <h2 id="progressTitle">Log a session</h2>
-          <p>Your log stays in this browser. It is not uploaded anywhere.</p>
-        </div>
-      </div>
-      <form id="logForm" class="log-form">
-        <label>Minutes completed <input id="logMinutes" type="number" min="1" max="180" value="20" /></label>
-        <label>Effort <select id="logEffort"><option>Easy</option><option selected>Moderate</option><option>Challenging</option></select></label>
-        <label>How did it feel? <input id="logNote" type="text" placeholder="e.g., knees felt fine, plank was hard" /></label>
-        <button class="button primary" type="submit">Save log</button>
-        <button id="exportLogBtn" class="button secondary" type="button">Export log</button>
-        <button id="clearLogBtn" class="button danger" type="button">Clear log</button>
-      </form>
+      <div class="section-row"><div><p class="section-kicker">Local progress</p><h2 id="progressTitle">Log a session</h2><p>Your log stays in this browser. It is not uploaded anywhere.</p></div></div>
+      <form id="logForm" class="log-form"><label>Minutes completed <input id="logMinutes" type="number" min="1" max="180" value="20" /></label><label>Effort <select id="logEffort"><option>Easy</option><option selected>Moderate</option><option>Challenging</option></select></label><label>How did it feel? <input id="logNote" type="text" placeholder="e.g., knees felt fine, plank was hard" /></label><button class="button primary" type="submit">Save log</button><button id="exportLogBtn" class="button secondary" type="button">Export log</button><button id="clearLogBtn" class="button danger" type="button">Clear log</button></form>
       <div id="progressSummary" class="progress-summary"></div>
     </section>
 
-    <section class="panel safety" aria-labelledby="safetyTitle">
-      <h2 id="safetyTitle">Safety scope</h2>
-      <p>This app is educational. It does not diagnose, prescribe, assess form, or replace a clinician, coach, therapist, teacher, parent, or guardian. Stop if you feel pain, dizziness, chest discomfort, faintness, or unusual shortness of breath. Choose easier options when unsure.</p>
-    </section>
+    <section class="panel safety" aria-labelledby="safetyTitle"><h2 id="safetyTitle">Safety scope</h2><p>This app is educational. It does not diagnose, prescribe, assess form, or replace a clinician, coach, therapist, teacher, parent, or guardian. Stop if you feel pain, dizziness, chest discomfort, faintness, or unusual shortness of breath. Choose easier options when unsure.</p></section>
   </main>
 
-  <footer>
-    <p>© ZenSightful Bytes &amp; Zen KOH. All rights reserved.</p>
-  </footer>
-
+  <footer><p>© ZenSightful Bytes &amp; Zen KOH. All rights reserved.</p></footer>
   <script src="app.js"></script>
+  <script src="demo-upgrade.js"></script>
 </body>
 </html>

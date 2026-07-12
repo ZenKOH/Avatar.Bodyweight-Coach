@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D Asset Lab | Avatar Bodyweight Coach</title>
+  <style>
+    :root{--bg:#070d16;--panel:#111a2a;--text:#f6f8fc;--muted:#aeb9ca;--line:rgba(255,255,255,.14);--blue:#63b8ff;--amber:#f7b84d;--green:#75e29a;--red:#ff7988;--radius:24px}*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 15% 0,rgba(99,184,255,.24),transparent 34rem),radial-gradient(circle at 90% 20%,rgba(247,184,77,.15),transparent 34rem),linear-gradient(135deg,#07101b,#05070d);color:var(--text)}a{color:inherit}.wrap{width:min(1180px,calc(100% - 32px));margin:auto}.hero{padding:32px 0 24px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:44px}.top a{text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--muted);background:rgba(255,255,255,.04)}.eyebrow{color:var(--amber);font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;font-weight:900}h1{font-size:clamp(2.6rem,7vw,6.5rem);line-height:.9;letter-spacing:-.07em;margin:0 0 18px}.lede{font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.6;color:var(--muted);max-width:920px}.panel{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));box-shadow:0 24px 80px rgba(0,0,0,.35);padding:clamp(18px,4vw,32px);margin:18px 0}.pipeline{display:grid;grid-template-columns:repeat(5,minmax(150px,1fr));gap:12px}.step{position:relative;min-height:120px;border:1px solid rgba(99,184,255,.25);border-radius:18px;background:rgba(99,184,255,.07);padding:16px}.step:not(:last-child):after{content:'→';position:absolute;right:-13px;top:50%;translate:0 -50%;color:var(--amber);font-weight:950}.step strong{display:block;margin-bottom:8px}.step span{color:var(--muted);line-height:1.45}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.045);padding:18px;display:grid;gap:10px}.card h3{margin:0}.card p{margin:0;color:var(--muted);line-height:1.55}.pill{display:inline-flex;width:max-content;border-radius:999px;padding:6px 9px;font-size:.72rem;font-weight:900;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#dbeeff}.good{background:rgba(117,226,154,.12);border-color:rgba(117,226,154,.35);color:#caffd8}.caution{background:rgba(247,184,77,.12);border-color:rgba(247,184,77,.35);color:#ffe4ad}.workbench{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(280px,1.1fr);gap:18px}.drop{display:grid;place-items:center;text-align:center;min-height:150px;border:1.5px dashed rgba(99,184,255,.46);border-radius:20px;background:rgba(99,184,255,.06);padding:18px;color:#ddf0ff;font-weight:850;cursor:pointer}.drop input{display:none}.drop.drag{border-color:var(--amber);background:rgba(247,184,77,.08)}.manifest{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(2,6,12,.6);border:1px solid rgba(99,184,255,.2);border-radius:18px;padding:16px;max-height:360px;overflow:auto;color:#dceeff;line-height:1.5}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button{border:0;border-radius:999px;padding:11px 14px;font-weight:900;cursor:pointer}.primary{background:linear-gradient(135deg,var(--blue),#2877e5);color:#06111d}.secondary{background:rgba(255,255,255,.07);color:var(--text);border:1px solid var(--line)}.warning{border-left:4px solid var(--amber);padding-left:12px;color:#ffe1a8!important}@media(max-width:900px){.pipeline,.workbench{grid-template-columns:1fr}.step:after{display:none}.top{display:grid}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="top"><a href="index.html">← Back to app</a><a href="docs/OPEN_3D_ASSETS.md">Open research note</a></div>
+      <p class="eyebrow">Avatar Bodyweight Coach · 3D Asset Lab</p>
+      <h1>Open model, rigging and motion pipeline</h1>
+      <p class="lede">This page converts the app from a browser-rendered avatar prototype into a practical path toward real 3D avatars. It records free and open-source model routes, motion-capture sources, licence cautions, and a local manifest workflow. It does not bundle third-party human models until redistribution rights are clear.</p>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">Recommended pipeline</p>
+      <div class="pipeline">
+        <div class="step"><strong>1. Human model</strong><span>MakeHuman, VALID, Anny, or carefully reviewed MB-Lab output.</span></div>
+        <div class="step"><strong>2. Rig and clean</strong><span>Blender skeleton, clothing checks, joint limits, safe adult avatar.</span></div>
+        <div class="step"><strong>3. Motion source</strong><span>Exercise mocap, BVH, FBX, GLB animation clips or reviewed keyframes.</span></div>
+        <div class="step"><strong>4. Export</strong><span>GLB preferred for browser delivery; keep named animation clips.</span></div>
+        <div class="step"><strong>5. Integrate</strong><span>Load through Three.js, map clips to exercise cards and voice cues.</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <p class="eyebrow">Vetted candidate sources</p>
+      <div id="sources" class="grid"></div>
+    </section>
+
+    <section class="panel workbench">
+      <div>
+        <p class="eyebrow">Local asset intake</p>
+        <h2>Stage candidate files</h2>
+        <p class="lede">Drop candidate GLB, glTF, VRM, FBX, BVH or ZIP files here after preparing them in Blender or downloading them from a source whose licence you checked. Files stay local in your browser; the app records metadata only.</p>
+        <label id="drop" class="drop"><input id="files" type="file" accept=".glb,.gltf,.vrm,.fbx,.bvh,.zip" multiple><span>Drop files here or click to choose files</span></label>
+        <p id="status" class="warning">No candidate 3D files staged yet.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Manifest</p>
+        <div id="manifest" class="manifest"></div>
+        <div class="buttons"><button class="primary" id="copy">Copy checklist</button><button class="secondary" id="download">Download manifest</button><button class="secondary" id="clear">Clear local manifest</button></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const sources=[
+      ['MakeHuman','Open-source human model generator','Application/data AGPL; official exports commonly treated as CC0 via export exception. Verify clothing and hair assets.','Best first route for clothed adult GLB avatars through Blender.','good'],
+      ['MB-Lab','Blender add-on for realistic humanoids','GPL/AGPL family; generated characters may inherit AGPL obligations.','Useful for experiments; avoid bundling generated characters without review.','caution'],
+      ['VALID Avatar Library','Freely available rigged avatar research library','Free research library; verify package licence and attribution requirements.','Useful for inclusive avatar testing and perception research.','good'],
+      ['Anny Body Model','Open parametric body model','Apache 2.0 reported by authors.','Promising future route for open, varied body proportions.','good'],
+      ['CMU Motion Capture Database','Large motion-capture source','Public research mocap source; verify sequence terms before redistribution.','Use BVH/ASF-AMC clips as motion references and retarget in Blender.','caution'],
+      ['AMASS / BABEL','Motion corpus and action labels','Research terms vary by underlying dataset.','Useful for research and labelling, not direct bundling.','caution'],
+      ['Mixamo','Online auto-rigging and animation service','Free-to-use service, but not open-source; Adobe terms apply.','Useful for rigging and retargeting. Do not bundle assets casually.','caution'],
+      ['Three.js','Browser 3D renderer','MIT-licensed JavaScript/WebGL engine.','Future GLB viewer with GLTFLoader and AnimationMixer.','good']
+    ];
+    const checklist=['Choose a human model source with redistribution rights clear enough for GitHub Pages.','Create or export a clothed adult exercise avatar in Blender; avoid recognisable real persons.','Use a standard humanoid skeleton and name bones consistently before retargeting.','Retarget exercise motion clips: squat, lunge, bridge, push-up, plank, dead bug, balance, cardio and mobility patterns.','Export browser-ready GLB files with mesh, skeleton and named animation clips.','Keep source, licence, attribution and modification notes in assets/3d/ATTRIBUTION.md.','Test each motion for safe educational form before connecting it to voice coaching.','Keep the SVG avatar as fallback when 3D assets fail to load.'];
+    let staged=JSON.parse(localStorage.getItem('abc_3d_asset_manifest')||'[]');
+    const el=id=>document.getElementById(id);
+    el('sources').innerHTML=sources.map(s=>`<article class="card"><span class="pill ${s[4]}">${s[1]}</span><h3>${s[0]}</h3><p><strong>Licence note:</strong> ${s[2]}</p><p><strong>Use:</strong> ${s[3]}</p></article>`).join('');
+    function text(){const out=['# Avatar Bodyweight Coach 3D Asset Manifest','',`Generated: ${new Date().toLocaleString()}`,'','## Candidate sources',...sources.map(s=>`- ${s[0]} — ${s[1]}; licence note: ${s[2]}`),'','## Staged local files'];if(!staged.length)out.push('- None staged yet.');staged.forEach(f=>out.push(`- ${f.name} (${f.ext.toUpperCase()}, ${(f.size/1024/1024).toFixed(2)} MB), staged ${f.date}`));out.push('','## Required before bundling','',...checklist.map(x=>`- ${x}`));return out.join('\n')}
+    function render(){el('manifest').textContent=text();el('status').textContent=staged.length?`${staged.length} candidate file(s) staged locally. No file uploaded.`:'No candidate 3D files staged yet.';localStorage.setItem('abc_3d_asset_manifest',JSON.stringify(staged));}
+    function add(files){const ok=['glb','gltf','vrm','fbx','bvh','zip'];staged=[...[...files].filter(f=>ok.includes((f.name.split('.').pop()||'').toLowerCase())).map(f=>({name:f.name,size:f.size,ext:(f.name.split('.').pop()||'').toLowerCase(),date:new Date().toISOString()})),...staged].slice(0,40);render();}
+    el('files').addEventListener('change',e=>add(e.target.files));['dragenter','dragover'].forEach(t=>el('drop').addEventListener(t,e=>{e.preventDefault();el('drop').classList.add('drag')}));['dragleave','drop'].forEach(t=>el('drop').addEventListener(t,e=>{e.preventDefault();el('drop').classList.remove('drag')}));el('drop').addEventListener('drop',e=>add(e.dataTransfer.files));
+    el('copy').onclick=async()=>{await navigator.clipboard.writeText(checklist.map((x,i)=>`${i+1}. ${x}`).join('\n'));el('copy').textContent='Copied';setTimeout(()=>el('copy').textContent='Copy checklist',1200)};
+    el('download').onclick=()=>{const blob=new Blob([text()],{type:'text/markdown'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='avatar-bodyweight-3d-asset-manifest.md';a.click();URL.revokeObjectURL(url)};
+    el('clear').onclick=()=>{staged=[];render()};render();
+  </script>
+</body>
+</html>

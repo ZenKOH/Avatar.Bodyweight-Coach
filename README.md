@@ -1,13 +1,14 @@
 # Avatar Bodyweight Coach
 
-A standalone, local-first MacBook app for learning safe no-equipment bodyweight exercises with selectable browser-rendered avatars, staged movement demonstrations, voice/sound coaching, and an offline AI-style coaching engine.
+A standalone, local-first MacBook app for learning safe no-equipment bodyweight exercises with selectable high-fidelity browser-rendered avatars, staged movement demonstrations, voice/sound coaching, a hard stop control, and an offline AI-style coaching engine.
 
 ## What it does
 
 - 36 no-equipment bodyweight exercises across 6 movement domains.
-- Selectable neutral, male, or female browser-rendered avatar with clearer visual differentiation.
+- Selectable neutral, male, or female high-fidelity SVG avatar with clearer visual differentiation.
 - Staged visual demonstrations for each exercise pattern: setup, movement, control, and return.
 - Browser voice coach and soft sound cues for movement instructions and technique comments.
+- Stop demo & voice button that immediately cancels timers, speech synthesis, and cue sounds.
 - Clear descriptions, instructions, benefits, target body parts, cues, mistakes, and easier/harder options.
 - Local AI Coach that builds a readiness-aware session from your time, energy, experience, soreness, sensitivity areas, and goal.
 - Progress log stored in the browser only.
@@ -16,9 +17,9 @@ A standalone, local-first MacBook app for learning safe no-equipment bodyweight 
 
 ## Demo upgrade notes
 
-The **Show avatar demo** button now starts a guided stage-by-stage exercise demonstration rather than only scrolling to a static animation. Each demo cycles through four phases and updates the avatar pose, timeline, spoken coaching, and written technique comments.
+The **Show avatar demo** button starts a guided stage-by-stage exercise demonstration rather than only scrolling to a static animation. Each demo cycles through four phases and updates the avatar pose, timeline, spoken coaching, written technique comments, and optional cue sounds.
 
-The avatar is rendered locally in HTML/CSS with skin-tone gradients, hair, face details, clothing, shadows, and different male/female proportions. It is designed to look more realistic than the earlier stick-avatar prototype, but it is still a lightweight browser-rendered educational avatar, not a photorealistic video or medical-grade biomechanical simulation.
+The avatar is now rendered as a higher-fidelity local SVG with skin-tone gradients, face details, hair variants, clothing, shadows, texture filters, and different male/female proportions. It is designed to look much better than the earlier stick-avatar prototype. True photorealistic humans performing exercise realistically require licensed 3D/video assets, rigging, and motion-capture animation clips; this repository remains fully standalone, local-first, and asset-light.
 
 ## How to run on a MacBook
 

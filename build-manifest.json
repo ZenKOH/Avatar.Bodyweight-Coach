@@ -1,0 +1,31 @@
+{
+  "name": "Avatar Bodyweight Coach",
+  "version": "0.4.0-open-3d-asset-lab",
+  "updated": "2026-07-12",
+  "status": "improved build pushed",
+  "entrypoints": {
+    "main_app": "index.html",
+    "asset_lab": "asset-lab.html",
+    "github_pages_app": "https://zenkoh.github.io/Avatar.Bodyweight-Coach/",
+    "github_pages_asset_lab": "https://zenkoh.github.io/Avatar.Bodyweight-Coach/asset-lab.html"
+  },
+  "included_features": [
+    "36 no-equipment bodyweight exercises across 6 movement domains",
+    "high-fidelity browser-rendered SVG avatar fallback",
+    "neutral, male and female avatar selections",
+    "stage-by-stage guided movement demos",
+    "browser voice coaching",
+    "soft sound cues",
+    "Stop demo and voice control",
+    "offline AI-style readiness-aware session planning",
+    "local progress log and export",
+    "3D Asset Lab for open/free model, rigging and mocap source review",
+    "local asset manifest workflow for GLB, glTF, VRM, FBX, BVH and ZIP candidates",
+    "licence guardrails before committing third-party 3D assets"
+  ],
+  "important_limitations": [
+    "No third-party photorealistic human model or mocap file is bundled until redistribution rights are verified.",
+    "The current production avatar remains a local SVG fallback.",
+    "True photorealistic exercise animation requires licensed or verified open 3D assets, rigging and animation clips."
+  ]
+}
